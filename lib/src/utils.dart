@@ -26,9 +26,10 @@ void moveFiles(String srcDir, String dstDir) {
   if (!fs.directory(dstDir).existsSync()) {
     fs.directory(dstDir).createSync(recursive: true);
   }
-  fs.directory(srcDir).listSync().forEach((file) {
-    file.renameSync('$dstDir/${p.basename(file.path)}');
-  });
+  runCmd(["mv", srcDir, dstDir]);
+  // fs.directory(srcDir).listSync().forEach((file) {
+  //   file.renameSync('$dstDir/${p.basename(file.path)}');
+  // });
 }
 
 /// Creates a list of available iOS simulators.
