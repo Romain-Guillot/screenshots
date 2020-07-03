@@ -546,13 +546,7 @@ void changeAndroidLocale(
     '-s',
     deviceId,
     'shell',
-    'setprop',
-    'persist.sys.locale',
-    testLocale,
-    ';',
-    'setprop',
-    'ctl.restart',
-    'zygote'
+    '"setprop persist.sys.locale $testLocale; setprop ctl.restart zygote"'
   ]);
 }
 
