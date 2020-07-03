@@ -7,6 +7,7 @@ import 'config.dart';
 import 'screens.dart';
 import 'package:path/path.dart' as p;
 import 'globals.dart';
+import 'utils.dart' as utils;
 
 /// clear configured fastlane directories.
 Future clearFastlaneDirs(
@@ -41,12 +42,15 @@ Future _clearFastlaneDir(Screens screens, String deviceName, String locale,
   // delete images ending with .kImageExtension
   // for compatibility with FrameIt
   // (see https://github.com/mmcc007/screenshots/issues/61)
-  deleteMatchingFiles(dirPath, RegExp('$deviceName.*.$kImageExtension'));
-  if (runMode == RunMode.normal) {
-    // delete all diff files (if any)
-    deleteMatchingFiles(
-        dirPath, RegExp('.*${ImageMagick.kDiffSuffix}.$kImageExtension'));
-  }
+  utils.cmd([
+    'rm -R $dirPath'
+  ]);
+  // deleteMatchingFiles(dirPath, RegExp('$deviceName.*.$kImageExtension'));
+  // if (runMode == RunMode.normal) {
+  //   // delete all diff files (if any)
+  //   deleteMatchingFiles(
+  //       dirPath, RegExp('.*${ImageMagick.kDiffSuffix}.$kImageExtension'));
+  // }
 }
 
 const kFastlanePhone = 'phone';
