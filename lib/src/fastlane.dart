@@ -42,15 +42,15 @@ Future _clearFastlaneDir(Screens screens, String deviceName, String locale,
   // delete images ending with .kImageExtension
   // for compatibility with FrameIt
   // (see https://github.com/mmcc007/screenshots/issues/61)
-  utils.cmd([
-    'rm -R $dirPath'
-  ]);
-  // deleteMatchingFiles(dirPath, RegExp('$deviceName.*.$kImageExtension'));
-  // if (runMode == RunMode.normal) {
-  //   // delete all diff files (if any)
-  //   deleteMatchingFiles(
-  //       dirPath, RegExp('.*${ImageMagick.kDiffSuffix}.$kImageExtension'));
-  // }
+  // utils.cmd([
+  //   'rm -R $dirPath'
+  // ]);
+  deleteMatchingFiles(dirPath, RegExp('$deviceName.*.$kImageExtension'));
+  if (runMode == RunMode.normal) {
+    // delete all diff files (if any)
+    deleteMatchingFiles(
+        dirPath, RegExp('.*${ImageMagick.kDiffSuffix}.$kImageExtension'));
+  }
 }
 
 const kFastlanePhone = 'phone';
